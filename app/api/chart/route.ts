@@ -1,13 +1,18 @@
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import yahooFinance from "yahoo-finance2";
-export async function GET(request: NextApiRequest) {
+
+export async function GET(request: NextRequest) {
   try {
-    const { queryOptions, query } = request.body;
+    const body = await request.json();
+    const { query, queryOptions } = body;
+
     const data = await yahooFinance.chart(query, queryOptions);
     return NextResponse.json(data);
   } catch (error) {
     console.error(error);
-    throw error;
+    return NextResponse.json(
+      { error: "An error occurred while fetching data." },
+      { status: 500 }
+    );
   }
 }
