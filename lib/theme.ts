@@ -11,7 +11,7 @@ const geistSans = localFont({
 
 const theme = createTheme({
   palette: {
-    mode: "dark", // Light or dark theme
+    mode: "dark",
     primary: {
       main: "#1976d2", // Primary color
       light: "#63a4ff",
@@ -153,7 +153,8 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "#1976d2", // Custom app bar color
+          margin: 0,
+          padding: 0,
         },
       },
     },
